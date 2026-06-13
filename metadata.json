@@ -1,0 +1,7 @@
+{
+  "uuid": "tailscale-switcher@carsal.innovacion",
+  "name": "Selector Tailscale",
+  "description": "Alternar rápidamente entre las redes Tailscale",
+  "shell-version": [ "45", "46", "47" ],
+  "url": ""
+}
