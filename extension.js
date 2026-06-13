@@ -18,26 +18,25 @@ class TailscaleSwitcher extends PanelMenu.Button {
         });
         this.add_child(icon);
 
-        // Opción 1: Conectar a Carsal
-        let itemCarsal = new PopupMenu.PopupMenuItem('🌐 Cambiar a Carsal');
-        itemCarsal.connect('activate', () => {
-            this._runCommand(['tailscale', 'switch', 'carsal']);
+        // Opción 1: Red Corporativa / Principal
+        let itemEmpresaA = new PopupMenu.PopupMenuItem('🌐 Red Principal');
+        itemEmpresaA.connect('activate', () => {
+            this._runCommand(['tailscale', 'switch', 'mi-red-principal']);
         });
-        this.menu.addMenuItem(itemCarsal);
+        this.menu.addMenuItem(itemEmpresaA);
 
-        // Opción 2: Conectar a Bauri
-        let itemBauri = new PopupMenu.PopupMenuItem('🏢 Cambiar a Bauri');
-        itemBauri.connect('activate', () => {
-            this._runCommand(['tailscale', 'switch', 'bauri']);
+        // Opción 2: Red Secundaria / Cliente
+        let itemEmpresaB = new PopupMenu.PopupMenuItem('🏢 Red Secundaria');
+        itemEmpresaB.connect('activate', () => {
+            this._runCommand(['tailscale', 'switch', 'mi-red-secundaria']);
         });
-        this.menu.addMenuItem(itemBauri);
+        this.menu.addMenuItem(itemEmpresaB);
     }
 
     _runCommand(argv) {
         try {
             let proc = Gio.Subprocess.new(argv, Gio.SubprocessFlags.NONE);
             proc.init(null);
-            // Mostrar una pequeña notificación en Ubuntu
             Main.notify('Tailscale', 'Cambiando de red...');
         } catch (e) {
             logError(e);
